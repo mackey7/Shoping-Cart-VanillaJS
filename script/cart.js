@@ -1,7 +1,9 @@
 fetch("https://api.myjson.com/bins/os52s")
-    .then(response => response.json())
     .then(response => {
-        response.map(card => {
+        return response.json()
+    })
+    .then(response => {
+        response.forEach(card => {
             const products = document.querySelector('.products');
             //create product card
             const productCard = document.createElement('div');
@@ -25,6 +27,7 @@ fetch("https://api.myjson.com/bins/os52s")
             productCard.appendChild(quantity)
             //create price
             const price = document.createElement('span');
+            price.classList.add('price');
             price.dataset.price = card.price;
             price.innerHTML = ` ${card.price} $`;
             productCard.appendChild(price)
@@ -39,22 +42,23 @@ fetch("https://api.myjson.com/bins/os52s")
             const productList = document.querySelector('#product-item');
             productList.appendChild(productCard);
         })
+        return response
     })
     .then(response => {
-        console.log(response)
         const addProductBtns = document.querySelectorAll('.add-product');
         for (const addProduct of addProductBtns) {
             addProduct.addEventListener('click', function (e) {
-                console.log(e.target);
                 const parent = e.target.parentNode;
-                const name = parent.querySelector('.name').getAttribute('data-name');
-                const price = parent.querySelector('.price').getAttribute('data-price');
-                const count = parent.querySelector('input').value;
-                const img = parent.querySelector('.img').getAttribute("src");
+                const img = parent.querySelector('.product-images').getAttribute('src');
+                const name = parent.querySelector('.name').innerText;
+                // const count = parent.querySelector('input').value;
+                const count = 1;
+                const price = parent.querySelector('.price').getAttribute("data-price");
                 addIttemtoCart(name, price, count, img)
                 displayCart();
             });
         };
+        return response
     });
 
 let cart = [];
@@ -117,6 +121,7 @@ function displayCart() {
                     src="${cartArray[i].img}" alt=""> </li>`
     }
     showCart.innerHTML = output;
+
 
 }
 
