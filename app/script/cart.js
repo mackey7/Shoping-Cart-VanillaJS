@@ -20,24 +20,17 @@ fetch("https://api.myjson.com/bins/os52s")
             productName.dataset.img = card.name;
             productName.innerHTML = card.name;
             productCard.appendChild(productName)
-            //create quantity input
-            const quantity = document.createElement('input');
-            quantity.type = 'number';
-            quantity.value = 1
-            productCard.appendChild(quantity)
             //create price
             const price = document.createElement('span');
             price.classList.add('price');
             price.dataset.price = card.price;
             price.innerHTML = ` ${card.price} $`;
             productCard.appendChild(price)
-
             //crate add to cart button
             const addProduct = document.createElement('button');
             addProduct.classList.add('add-product');
             addProduct.innerHTML = "Add to cart";
             productCard.appendChild(addProduct)
-
             //add Porduct card to product list
             const productList = document.querySelector('#product-item');
             productList.appendChild(productCard);
@@ -89,7 +82,6 @@ function countCart() {
     var totoalCount = 0;
     for (let i in cart) {
         totoalCount += cart[i].count;
-
     }
     return ' ' + totoalCount;
 }
@@ -103,32 +95,42 @@ function totalCart() {
     return totoalCost
 }
 
-
 // list  items in cart
 function listCart() {
     return cart;
 }
 
 let output = "";
-
-
-const showCart = document.querySelector('.show-cart');
+const showCart = document.querySelector('.cart-body');
 function displayCart() {
     const cartArray = listCart();
     let output = "";
     for (var i in cartArray) {
-        output += `<li class="show-cart-item"><p>nazwa produktu:</p> ${cartArray[i].name} <p>ilosc:</p>  ${cartArray[i].count}<p>cena:</p> ${cartArray[i].price}<p>$</p> <img class="product-images"
-                    src="${cartArray[i].img}" alt=""> </li>`
+        output +=
+            `<tr class="show-cart-item">
+        <td class="categoryName"> ${cartArray[i].name}</td>
+         <td class="categoryQuantity"> ${cartArray[i].count}</td>
+         <td class="categoryPrice"> ${cartArray[i].price}$</td>
+          <td> <img class="categoryImage cart-item_image" src="${cartArray[i].img}" alt=""></td>
+          </tr>`
     }
     showCart.innerHTML = output;
 
-
 }
-
-const clearCart = document.querySelector('.clear-cart');
-clearCart.addEventListener('click', function () {
+const clearBtn = document.createElement('button');
+clearBtn.classList.add('clear-cart');
+clearBtn.innerHTML = 'Clear Cart'
+const cartConatiner = document.querySelector('.cart');
+cartConatiner.appendChild(clearBtn);
+clearBtn.addEventListener('click', function () {
     clearAllCart()
     let output = "";
     showCart.innerHTML = output;
 
 });
+
+const cartBtn = document.querySelector('#cart-btn')
+cartBtn.addEventListener('click', function () {
+    const cartConatiner = document.querySelector('.cart');
+    cartConatiner.classList.toggle('active')
+})

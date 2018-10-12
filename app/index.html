@@ -15,19 +15,33 @@
 <body class="app">
     <nav class="navigation">
         <span>Company</span>
-        <a href="" class="link-item">
-            <i class="fas fa-shopping-cart"> </i>
-            <p>Koszyk</p>
-        </a>
         <div>
-            <ul class="show-cart">
-            </ul>
-            <button class="clear-cart">Clear</button>
+            <button id='cart-btn'>
+                <i class="fas fa-shopping-cart"> </i>
+                <p>Cart</p>
+            </button>
         </div>
     </nav>
-    <header class="header">
-        <h1>Kategoria sklepu</h1>
-        <h3>Haslo reklamowe</h3>
+    <div class="cart hidden">
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Image</th>
+                </tr>
+            </thead>
+            <tbody class="cart-body">
+                <!-- list products in cart  -->
+            </tbody>
+
+        </table>
+    </div>
+    <header class="
+            header">
+        <h1>Mobile Phones</h1>
+        <h3>Only the best phones! </h3>
     </header>
     <main class="main">
         <div id="product-item" class="products">

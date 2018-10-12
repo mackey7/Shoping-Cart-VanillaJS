@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/mackey7/Shoping-Cart-VanillaJS#readme",
   "devDependencies": {
+    "browser-sync": "^2.26.0",
     "gulp": "^3.9.1",
     "gulp-sass": "^4.0.1"
   }
