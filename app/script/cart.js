@@ -94,7 +94,7 @@ function countCart() {
     return ' ' + totoalCount;
 }
 
-// haw many cost
+// how many cost
 function totalCart() {
     let totoalCost = 0;
     for (var i in cart) {
